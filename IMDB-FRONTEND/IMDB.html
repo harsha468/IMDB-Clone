@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IMDB | Movies</title>
+    <link rel="icon" href="logos/Imdb.png" type="image/icon type">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    <script src="js/jquery-3.6.0.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="css/IMDB.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <a class="navbar-brand" href="IMDB.html">
+            <img src="logos/Imdb-logo.png" width="45" height="30" class="d-inline-block align-top" alt=""> IMDB
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="IMDB.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="actors.html">Actors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="producers.html">Producers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="genres.html">Genres</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div id="MovieBody-alert">
+
+    </div>
+    <div class="container-fluid">
+        <div class="row" id="MovieCard">
+        </div>
+    </div>
+
+    <div class="modal fade" id="UpdateMovie" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <a class="navbar-brand text-white" href="#">
+                        <img src="logos/Imdb-logo.png" width="45" height="30" class="d-inline-block align-top" alt=""> Update Movie
+                    </a>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="UpdateMovie-alert">
+
+                </div>
+                <div class="modal-body" id="UpdateMovieForm">
+                    <div class="form-group">
+                        <label class="col-form-label">Movie Name:</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="UpdateMovie-Name">
+                            <div id="UpdateMovie-NameFeedback">
+                            </div>
+                        </div>
+
+                        <label class="col-form-label">CoverImage:</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="UpdateMovie-CoverImage">
+                            <div id="UpdateMovie-CoverImageFeedback">
+                            </div>
+                        </div>
+
+                        <label class="col-form-label">Plot:</label>
+                        <div class="col">
+                            <textarea class="form-control" id="UpdateMovie-Plot"></textarea>
+                            <div id="UpdateMovie-PlotFeedback">
+                            </div>
+                        </div>
+
+                        <label class="col-form-label">Year Of Release:</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="UpdateMovie-YearOfRelease">
+                            <div id="UpdateMovie-YearOfReleaseFeedback">
+                            </div>
+                        </div>
+
+                        <label class="col-form-label">Actors: <span id="UpdateMovie-ActorsFeedback"
+                                class=""></span></label>
+                        <div class="col">
+                            <div class="container" class="remove-padding" style="padding:0%;">
+                                <div class="row text-dark" id="updateMovie-actors">
+                                    <select class="js-example-basic-multiple actor-select" name="actorsIds[]" multiple="multiple" id="UpdateMovie-Actors">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="col-form-label">Producer:</label>
+                        <div class="col">
+                            <select class="form-control form-control-md" id="UpdateMovie-Producer">
+                                <option>Select Producer</option>
+                            </select>
+                            <div id="UpdateMovie-ProducerFeedback">
+                            </div>
+                        </div>
+
+                        <label class="col-form-label">Genres: <span id="UpdateMovie-GenresFeedback"
+                                class=""></span></label>
+                        <div class="col">
+                            <div class="container" class="remove-padding" style="padding: 0%;">
+                                <div class="row text-dark" id="updateMovie-genres">
+                                    <select class="js-example-basic-multiple actor-select" name="genresIds[]" multiple="multiple" id="UpdateMovie-Genres">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning" id="UpdateMovie-btn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ViewMovie" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <a class="navbar-brand text-white">
+                        <img src="logos/Imdb-logo.png" width="45" height="30" class="d-inline-block align-top" alt=""> View Movie
+                    </a>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <img class="card-img-top" id="cover-Image" alt="Image not available">
+
+                <div class="container text-center">
+                    <h3 class="card-title" id="ViewModal-movieName"></h3>
+                    <p class="card-text" id="ViewModal-moviePlot"></p>
+                    <H4>Actors:</H4>
+                    <div class="row" id="viewMovie-actors">
+
+                    </div>
+                    <H4>Producer:</H4>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card text-white bg-secondary mb-3">
+                                <div class="card-header" id="ViewModal-movieProducer"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <H4>Genres:</H4>
+                    <div class="row" id="viewMovie-genres">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/IMDB.js"></script>
+</body>
+
+</html>

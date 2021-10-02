@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Feature\Actor - Copy.feature.cs" />
+  </ItemGroup>
+    <ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.0" />
+		<PackageReference Include="Moq" Version="4.13.1" />
+		<PackageReference Include="SpecFlow" Version="3.1.67" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.67" />
+		<PackageReference Include="SpecFlow.xUnit" Version="3.1.67" />
+		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+	</ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\IMDBAPI\IMDB.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Feature\Movie.feature.cs">
+        <DependentUpon>Movie.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Feature\Review.feature.cs">
+        <DependentUpon>Review.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Feature\Genre.feature.cs">
+        <DependentUpon>Genre.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Feature\Producer.feature.cs">
+        <DependentUpon>Producer.feature</DependentUpon>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <SpecFlowFeatureFiles Update="Feature\Movie.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Feature\Review.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Feature\Genre.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Feature\Producer.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+    </ItemGroup>
+
+</Project>

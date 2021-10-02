@@ -1,0 +1,22 @@
+* {
+    margin: 0%;
+}
+
+nav {
+    background-color: #1f1f1f;
+}
+
+body {
+    background-color: #1f1f1f;
+    width: 100%;
+    min-height: 100%;
+}
+.container-fluid {
+    background-color: #1f1f1f;
+    padding: 20px;
+}
+
+td .btn {
+    width: 40px;
+    height: 40px;
+}
